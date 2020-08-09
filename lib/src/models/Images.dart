@@ -6,7 +6,7 @@ class Images with ChangeNotifier {
   List<EditableImage> _images = [];
   DataBaseHelper _dataBaseHelper = DataBaseHelper.instance;
 
-  Future<List<EditableImage>> get images async{
+  Future<List<EditableImage>> get images async {
     _images = await _dataBaseHelper.getAllImages();
     return _images;
   }
@@ -14,5 +14,9 @@ class Images with ChangeNotifier {
   void addImage(EditableImage image) {
     _images.add(image);
     notifyListeners();
+  }
+
+  EditableImage getImagebyId(int id) {
+    return _images[id];
   }
 }

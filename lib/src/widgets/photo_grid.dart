@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:photo_editing_app/src/models/EditableImage.dart';
 import 'package:photo_editing_app/src/models/Images.dart';
+import 'package:photo_editing_app/src/screens/editing_screen.dart';
 import 'package:provider/provider.dart';
 
 class PhotosGrid extends StatelessWidget {
@@ -16,10 +17,14 @@ class PhotosGrid extends StatelessWidget {
             itemCount: snapshot.data.length,
             gridDelegate:
                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemBuilder: (BuildContext context, int index) => Container(
-              child:Image.file(File(snapshot.data[index].image)),
-              padding: EdgeInsets.all(10),
+            itemBuilder: (BuildContext context, int index) => GestureDetector(
+              onTap: () => Navigator.pushNamed(context, EditingScreen.routeName, arguments: index),
+              child: Container(
+                child:Image.file(File(snapshot.data[index].image)),
+                padding: EdgeInsets.all(10),
+              ),
             ),
+            
           );
         else if (snapshot.hasError)
           return Center(
