@@ -19,9 +19,12 @@ class PhotosGrid extends StatelessWidget {
                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
             itemBuilder: (BuildContext context, int index) => GestureDetector(
               onTap: () => Navigator.pushNamed(context, EditingScreen.routeName, arguments: index),
-              child: Container(
-                child:Image.file(File(snapshot.data[index].image)),
-                padding: EdgeInsets.all(10),
+              child: ChangeNotifierProvider<EditableImage>.value(
+                value: snapshot.data[index],
+                child: Container(
+                  child:Image.file(File(snapshot.data[index].imageLocation)),
+                  padding: EdgeInsets.all(10),
+                ),
               ),
             ),
             
@@ -31,7 +34,7 @@ class PhotosGrid extends StatelessWidget {
             child: Text("Error loading data :("),
           );
         else
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
       },
     );
   }

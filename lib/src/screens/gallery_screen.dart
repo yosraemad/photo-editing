@@ -35,7 +35,7 @@ class GalleryScreen extends StatelessWidget {
             onTap: () async {
               final loadedImage = await imageLogic.getImageUsingCamera();
               if (loadedImage != null) {
-                EditableImage image = EditableImage(image: loadedImage);
+                EditableImage image = EditableImage(imageLocation: loadedImage);
                 imageProvider.addImage(image);
                 dataBaseHelper.insert(image);
               }
@@ -46,7 +46,7 @@ class GalleryScreen extends StatelessWidget {
             backgroundColor: Colors.black,
             onTap: () async {
               final loadedImage = await imageLogic.getImageUsingGallery();
-              EditableImage image = EditableImage(image: loadedImage);
+              EditableImage image = EditableImage(imageLocation: loadedImage);
               if (loadedImage != null)
               {imageProvider.addImage(image);
               dataBaseHelper.insert(image);}

@@ -32,6 +32,7 @@ dependencies:
   provider: ^4.3.1
   sqflite: ^1.0.0
   path_provider: ^0.4.1
+  image: ^2.1.14
 
 dev_dependencies:
   flutter_test:
